@@ -58,7 +58,7 @@ func TestSimpleReplicationConnection(t *testing.T) {
 
 	var cp string
 	var snapshot_name string
-	cp, snapshot_name, err = replicationConn.CreateReplicationSlotEx("pgx_test", "test_decoding")
+	cp, snapshot_name, err = replicationConn.CreateReplicationSlotEx("pgx_test", "test_decoding", true)
 	if err != nil {
 		t.Fatalf("replication slot create failed: %v", err)
 	}
@@ -188,7 +188,7 @@ func TestReplicationConn_DropReplicationSlot(t *testing.T) {
 
 	var cp string
 	var snapshot_name string
-	cp, snapshot_name, err := replicationConn.CreateReplicationSlotEx("pgx_slot_test", "test_decoding")
+	cp, snapshot_name, err := replicationConn.CreateReplicationSlotEx("pgx_slot_test", "test_decoding", true)
 	if err != nil {
 		t.Logf("replication slot create failed: %v", err)
 	}
@@ -205,7 +205,7 @@ func TestReplicationConn_DropReplicationSlot(t *testing.T) {
 	}
 
 	// We re-create to ensure the drop worked.
-	cp, snapshot_name, err = replicationConn.CreateReplicationSlotEx("pgx_slot_test", "test_decoding")
+	cp, snapshot_name, err = replicationConn.CreateReplicationSlotEx("pgx_slot_test", "test_decoding", true)
 	if err != nil {
 		t.Logf("replication slot create failed: %v", err)
 	}
